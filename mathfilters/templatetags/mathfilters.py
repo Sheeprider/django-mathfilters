@@ -1,16 +1,18 @@
+from decimal import *
+
 from django.template import Library
 
 register = Library()
 
 
 def int_or_float(arg):
-    if isinstance(arg, int) or isinstance(arg, float):
+    if isinstance(arg, int) or isinstance(arg, float) or isinstance(arg, Decimal):
         return arg
     try:
         return int(arg)
     except ValueError:
         return float(arg)
-    
+
 
 @register.filter
 def sub(value, arg):
